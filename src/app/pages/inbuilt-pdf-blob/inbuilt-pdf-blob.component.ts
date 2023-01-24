@@ -14,7 +14,7 @@ export class InbuiltPdfBlobComponent implements OnInit {
   constructor(private pdfServ: PdfService) {}
 
   ngOnInit(): void {
-    this.pdfUrl = 'http://localhost:5201/api/v1/static/pdf/local';
+    this.pdfUrl = 'api/v1/static/pdf/local';
 
     this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
       this.loading = false;
