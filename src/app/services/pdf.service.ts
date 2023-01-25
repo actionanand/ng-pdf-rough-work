@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -9,7 +10,7 @@ import { map } from 'rxjs/operators';
 export class PdfService {
   constructor(private http: HttpClient) {}
 
-  downloadPdf(url: string): any {
+  downloadPdf(url: string): Observable<string> {
     return this.http.get(url, { responseType: 'blob' }).pipe(
       map((result: any) => {
         return result;

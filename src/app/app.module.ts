@@ -9,6 +9,8 @@ import { NpmPdfViewerComponent } from './pages/npm-pdf-viewer/npm-pdf-viewer.com
 import { HomeComponent } from './pages/home/home.component';
 import { InbuiltPdfBlobComponent } from './pages/inbuilt-pdf-blob/inbuilt-pdf-blob.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { SafePipe } from './shared/pipes/safe.pipe';
+import { PdfBlobPipe } from './shared/pipes/pdf-blob.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     NpmPdfViewerComponent,
     HomeComponent,
     NavBarComponent,
-    InbuiltPdfBlobComponent
+    InbuiltPdfBlobComponent,
+    SafePipe,
+    PdfBlobPipe
   ],
   imports: [
     BrowserModule,
