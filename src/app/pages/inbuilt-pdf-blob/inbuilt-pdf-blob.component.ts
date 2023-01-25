@@ -11,19 +11,20 @@ import { PdfService } from '../../services/pdf.service';
 })
 export class InbuiltPdfBlobComponent implements OnInit, OnDestroy {
   pdfUrl!: string;
+  pdfBlobUrl!: string;
   loading = true;
   pdfSub!: Subscription;
 
   constructor(private pdfServ: PdfService) {}
 
   ngOnInit(): void {
-    this.pdfUrl = 'api/v1/static/pdf/local';
+    this.pdfUrl = 'api/v1/static/pdf/remote';
 
     this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
       this.loading = false;
       const pdfBlob = new Blob([resp], { type: 'application/pdf' });
-      this.pdfUrl = window.URL.createObjectURL(pdfBlob);
-      // console.log('Pdf blob url: ', this.pdfUrl);
+      this.pdfBlobUrl = window.URL.createObjectURL(pdfBlob);
+      // console.log('Pdf blob url: ', this.pdfBlobUrl);
     });
   }
 

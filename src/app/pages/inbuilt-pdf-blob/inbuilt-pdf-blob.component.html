@@ -1,3 +1,11 @@
-<p>Inbuilt PDF works!</p>
+<h1>PDF Blob rendered in inbuilt browser</h1>
 
-<embed [src]="pdfUrl" type="application/pdf" style="height: 100%; width: 100%" />
+<div class="pdf-container">
+  <!-- <object [attr.data]="pdfUrl | safe : 'resourceUrl'" type="application/pdf" class="pdf-content"></object> -->
+
+  <embed [src]="pdfUrl | pdfBlob | async | safe : 'resourceUrl'" type="application/pdf" class="pdf-content" />
+
+  <!-- <iframe [attr.src]="pdfBlobUrl | safe : 'resourceUrl'" type="application/pdf" class="pdf-content">
+    <p>Not Supported</p>
+  </iframe> -->
+</div>
