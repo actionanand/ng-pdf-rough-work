@@ -1,0 +1,23 @@
+{
+  "/api/v1/static/pdf/local": {
+    "target": "http://localhost:5201",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/api/v1/static/pdf/remote": {
+    "target": "http://localhost:5201",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  },
+  "/somepath/api/*": {
+    "target": "http://localhost:5201",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/somepath/api": "/api"
+    }
+  }
+}
