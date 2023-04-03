@@ -1,0 +1,17 @@
+.pug-frame {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 65vh;
+
+  .repeating-linear {
+    position: relative;
+    // width: 600px;
+    // height: 200px;
+    margin: auto;
+    border: 24px solid;
+    border-image: url('/assets/img/ar-heart.svg');
+    border-image-slice: 32;
+    border-image-repeat: round;
+  }
+}

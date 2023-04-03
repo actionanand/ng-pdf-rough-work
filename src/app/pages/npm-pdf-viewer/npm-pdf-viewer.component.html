@@ -1,0 +1,15 @@
+<h1 class="pdf-title">PDF rendering using npm package - PDF as byte array or Blob!</h1>
+
+<div class="btn-wrap">
+  <button (click)="openPdfInNewTab()">Open in new tab</button>
+</div>
+
+<ng2-pdfjs-viewer #externalPdfViewer [externalWindow]="true"> </ng2-pdfjs-viewer>
+
+<div class="pdf-container">
+  <div style="height: 100%; width: 100%;">
+    <ng2-pdfjs-viewer #externalPdfViewer #pdfViewerAutoLoad [download]="false" [downloadFileName]="'custom-view'">
+    </ng2-pdfjs-viewer>
+  </div>
+</div>
+
