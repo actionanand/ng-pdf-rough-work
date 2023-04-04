@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "license": "MIT",
   "author": "Anand Raja",
+  "homepage": "http://actionanand.github.io/ng-pdf-rough-work",
   "scripts": {
     "ng": "ng",
     "serve": "ng serve --proxy-config proxy-dev.conf.json --port 1069",
@@ -10,7 +11,11 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "copy-pdf-assets": "cp -r node_modules/ng2-pdfjs-viewer/pdfjs src/assets/"
+    "copy-pdf-assets": "cp -r node_modules/ng2-pdfjs-viewer/pdfjs src/assets/",
+    "copy-error-page": "cp dist/index.html dist/404.html",
+    "build-gh": "ng build --output-path dist --base-href /ng-pdf-rough-work/",
+    "predeploy": "npm run build-gh && npm run copy-error-page",
+    "deploy": "gh-pages -d dist"
   },
   "private": false,
   "dependencies": {
@@ -32,6 +37,7 @@
     "@angular/cli": "~15.1.1",
     "@angular/compiler-cli": "^15.1.0",
     "@types/jasmine": "~4.3.0",
+    "gh-pages": "^5.0.0",
     "jasmine-core": "~4.5.0",
     "karma": "~6.4.0",
     "karma-chrome-launcher": "~3.1.0",
