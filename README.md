@@ -21,7 +21,7 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## How to deploy
 
 ```bash
-ng deploy --base-href=/ng-pdf-rough-work/
+npm run deploy-app
 ```
 
 ## Troubleshooting

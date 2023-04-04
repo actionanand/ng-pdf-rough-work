@@ -10,7 +10,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "copy-pdf-assets": "cp -r node_modules/ng2-pdfjs-viewer/pdfjs src/assets/"
+    "copy-pdf-assets": "cp -r node_modules/ng2-pdfjs-viewer/pdfjs src/assets/",
+    "deploy-app": "ng deploy --base-href=/ng-pdf-rough-work/"
   },
   "private": false,
   "dependencies": {
