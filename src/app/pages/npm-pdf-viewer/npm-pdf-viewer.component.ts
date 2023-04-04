@@ -34,12 +34,11 @@ export class NpmPdfViewerComponent implements OnInit, OnDestroy, AfterViewInit {
     this.pdfUrl = 'api/v1/static/pdf/local';
 
     this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
-      this.loading = false;
-
       if (external) {
         this.extPdfViewer.pdfSrc = resp;
         this.extPdfViewer.refresh();
       } else {
+        this.loading = false;
         this.pdfViewer.pdfSrc = resp; // pdfSrc can be Blob or Uint8Array
         this.pdfViewer.refresh(); // Ask pdf viewer to load/refresh pdf
       }
