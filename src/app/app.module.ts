@@ -13,6 +13,7 @@ import { InbuiltPdfBlobComponent } from './pages/inbuilt-pdf-blob/inbuilt-pdf-bl
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
 import { SafePipe } from './shared/pipes/safe.pipe';
 import { PdfBlobPipe } from './shared/pipes/pdf-blob.pipe';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { PdfBlobPipe } from './shared/pipes/pdf-blob.pipe';
     NavBarComponent,
     InbuiltPdfBlobComponent,
     SafePipe,
-    PdfBlobPipe
+    PdfBlobPipe,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
