@@ -10,7 +10,8 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', component: HomeComponent },
   { path: 'inbuilt-pdf', component: InbuiltPdfViewerComponent },
   { path: 'inbuilt-blob', component: InbuiltPdfBlobComponent},
-  { path: 'custom-pdf', component: NpmPdfViewerComponent }
+  { path: 'custom-pdf', component: NpmPdfViewerComponent },
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

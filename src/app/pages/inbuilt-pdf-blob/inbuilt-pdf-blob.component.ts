@@ -3,6 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { PdfService } from '../../services/pdf.service';
+import { environment } from '../../../environments/environment.development';
 
 @Component({
   selector: 'app-inbuilt-pdf-blob',
@@ -18,7 +19,8 @@ export class InbuiltPdfBlobComponent implements OnInit, OnDestroy {
   constructor(private pdfServ: PdfService) {}
 
   ngOnInit(): void {
-    this.pdfUrl = 'api/v1/static/pdf/remote';
+    this.pdfUrl = environment.backend.remotePDF;
+    console.log('Ar ', this.pdfUrl);
 
     this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
       this.loading = false;

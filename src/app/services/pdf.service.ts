@@ -11,6 +11,7 @@ export class PdfService {
   constructor(private http: HttpClient) {}
 
   downloadPdf(url: string): Observable<Blob> {
+    console.log('Ar inside serv ', url);
     return this.http.get(url, { responseType: 'blob' }).pipe(
       map((result: Blob) => {
         return result;
