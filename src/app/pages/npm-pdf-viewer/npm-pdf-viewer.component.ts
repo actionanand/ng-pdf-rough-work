@@ -16,7 +16,7 @@ export class NpmPdfViewerComponent implements OnInit, OnDestroy, AfterViewInit {
   pdfUrl!: string;
   loading = true;
   pdfSub!: Subscription;
-  pdfAsset = 'my-sub-domain/path/assets/pdfjs';
+  // pdfAsset = 'my-sub-domain/path/assets/pdfjs';
 
   constructor(private pdfServ: PdfService) {}
 
