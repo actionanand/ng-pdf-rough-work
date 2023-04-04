@@ -16,7 +16,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-bottom: .8rem;
+  margin-bottom: 0.8rem;
+}
+
+.spinner-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50vh;
 }
 
 @media only screen and (max-width: 850px) {

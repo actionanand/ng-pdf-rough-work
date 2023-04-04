@@ -16,6 +16,7 @@ export class NpmPdfViewerComponent implements OnInit, OnDestroy, AfterViewInit {
   pdfUrl!: string;
   loading = true;
   pdfSub!: Subscription;
+  // pdfAsset = 'my-sub-domain/path/assets/pdfjs';
 
   constructor(private pdfServ: PdfService) {}
 
@@ -31,10 +32,9 @@ export class NpmPdfViewerComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private pdfDownload(external = false) {
     this.pdfUrl = 'api/v1/static/pdf/local';
+    this.loading = false;
 
     this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
-      this.loading = false;
-
       if (external) {
         this.extPdfViewer.pdfSrc = resp;
         this.extPdfViewer.refresh();

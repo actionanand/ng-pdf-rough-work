@@ -1,11 +1,17 @@
 <h1 class="pdf-title">PDF Blob or byte array rendered in inbuilt browser itself using pipes</h1>
 
-<div class="pdf-container">
-  <!-- <object [attr.data]="pdfUrl | safe : 'resourceUrl'" type="application/pdf" class="pdf-content"></object> -->
-
-  <embed [src]="pdfUrl | pdfBlob | async | safe : 'resourceUrl'" type="application/pdf" class="pdf-content" />
-
-  <!-- <iframe [attr.src]="pdfBlobUrl | safe : 'resourceUrl'" type="application/pdf" class="pdf-content">
-    <p>Not Supported</p>
-  </iframe> -->
+<div class="spinner-wrap" *ngIf="loading; else loadPDF">
+  <app-spinner></app-spinner>
 </div>
+
+<ng-template #loadPDF>
+  <div class="pdf-container">
+    <!-- <object [attr.data]="pdfUrl | safe : 'resourceUrl'" type="application/pdf" class="pdf-content"></object> -->
+
+    <embed [src]="pdfUrl | pdfBlob | async | safe : 'resourceUrl'" type="application/pdf" class="pdf-content" />
+
+    <!-- <iframe [attr.src]="pdfBlobUrl | safe : 'resourceUrl'" type="application/pdf" class="pdf-content">
+      <p>Not Supported</p>
+    </iframe> -->
+  </div>
+</ng-template>

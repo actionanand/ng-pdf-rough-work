@@ -1,15 +1,21 @@
 {
   "/api/v1/static/pdf/local": {
-    "target": "http://localhost:5201",
+    "target": "https://www.africau.edu/images/default/sample.pdf",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/v1/static/pdf/local": ""
+    }
   },
   "/api/v1/static/pdf/remote": {
-    "target": "http://localhost:5201",
+    "target": "https://www.africau.edu/images/default/sample.pdf",
     "secure": false,
     "logLevel": "debug",
-    "changeOrigin": true
+    "changeOrigin": true,
+    "pathRewrite": {
+      "^/api/v1/static/pdf/remote": ""
+    }
   },
   "/somepath/api/*": {
     "target": "http://localhost:5201",

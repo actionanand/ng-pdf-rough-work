@@ -26,6 +26,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 - [How to Animate a SVG with border-image](https://css-tricks.com/how-to-animate-a-svg-with-border-image/)
 - [All You Need to Know About Angular Proxy Configuration](https://javascript.plainenglish.io/all-you-need-to-know-about-angular-proxy-configuration-a1aeb2d8c86)
+- [Angular PDFJS viewer with Mozilla's ViewerJS.](https://github.com/intbot/ng2-pdfjs-viewer)
 
 ## Further help
 
