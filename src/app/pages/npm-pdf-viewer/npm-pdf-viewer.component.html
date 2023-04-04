@@ -1,27 +1,20 @@
 <h1 class="pdf-title">PDF rendering using npm package - PDF as byte array or Blob!</h1>
 
-<div class="spinner-wrap" *ngIf="loading; else loadPDF">
+<div class="spinner-wrap" *ngIf="loading">
   <app-spinner></app-spinner>
 </div>
 
-<ng-template #loadPDF>
-  <div class="btn-wrap">
-    <button (click)="openPdfInNewTab()">Open in new tab</button>
+<div class="btn-wrap">
+  <button (click)="openPdfInNewTab()">Open in new tab</button>
+</div>
+
+<ng2-pdfjs-viewer #externalPdfViewer [externalWindow]="true" [downloadFileName]="'custom view pdf'" [download]="false">
+</ng2-pdfjs-viewer>
+
+<div class="pdf-container">
+  <div style="height: 100%; width: 100%">
+    <ng2-pdfjs-viewer #pdfViewerAutoLoad [downloadFileName]="'custom-view'"> </ng2-pdfjs-viewer>
   </div>
+</div>
 
-  <ng2-pdfjs-viewer
-    #externalPdfViewer
-    [externalWindow]="true"
-    [downloadFileName]="'custom view pdf'"
-    [download]="false"
-  >
-  </ng2-pdfjs-viewer>
-
-  <div class="pdf-container">
-    <div style="height: 100%; width: 100%">
-      <ng2-pdfjs-viewer #pdfViewerAutoLoad [downloadFileName]="'custom-view'"> </ng2-pdfjs-viewer>
-    </div>
-  </div>
-
-  <!-- <ng2-pdfjs-viewer #pdfViewerAutoLoad [viewerFolder]="pdfAsset"> </ng2-pdfjs-viewer> -->
-</ng-template>
+<!-- <ng2-pdfjs-viewer #pdfViewerAutoLoad [viewerFolder]="pdfAsset"> </ng2-pdfjs-viewer> -->
