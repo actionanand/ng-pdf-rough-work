@@ -4,12 +4,12 @@
   <button (click)="openPdfInNewTab()">Open in new tab</button>
 </div>
 
-<ng2-pdfjs-viewer #externalPdfViewer [externalWindow]="true"> </ng2-pdfjs-viewer>
+<ng2-pdfjs-viewer #externalPdfViewer [externalWindow]="true" [downloadFileName]="'custom view pdf'"> </ng2-pdfjs-viewer>
 
 <div class="pdf-container">
-  <div style="height: 100%; width: 100%;">
-    <ng2-pdfjs-viewer #externalPdfViewer #pdfViewerAutoLoad [download]="false" [downloadFileName]="'custom-view'">
-    </ng2-pdfjs-viewer>
+  <div style="height: 100%; width: 100%">
+    <ng2-pdfjs-viewer #pdfViewerAutoLoad [downloadFileName]="'custom-view'"> </ng2-pdfjs-viewer>
   </div>
 </div>
 
+<!-- <ng2-pdfjs-viewer #pdfViewerAutoLoad [viewerFolder]="pdfAsset"> </ng2-pdfjs-viewer> -->
