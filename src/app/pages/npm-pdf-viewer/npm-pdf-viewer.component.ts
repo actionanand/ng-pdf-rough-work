@@ -3,7 +3,7 @@ import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular
 import { Subscription } from 'rxjs';
 
 import { PdfService } from '../../services/pdf.service';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-npm-pdf-viewer',
@@ -33,8 +33,8 @@ export class NpmPdfViewerComponent implements OnInit, OnDestroy, AfterViewInit {
 
   private pdfDownload(external = false) {
     this.pdfUrl = environment.backend.localPdf;
-    console.log('Ar ', this.pdfUrl);
-    this.loading = false;
+
+    setTimeout(() => (this.loading = false), 2000);
 
     this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
       if (external) {

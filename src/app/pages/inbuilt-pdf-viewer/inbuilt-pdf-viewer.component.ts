@@ -3,7 +3,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { PdfService } from '../../services/pdf.service';
-import { environment } from '../../../environments/environment.development';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-inbuilt-pdf-viewer',
@@ -19,7 +19,6 @@ export class InbuiltPdfViewerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.pdfUrl = environment.backend.localPdf;
-    console.log('Ar ', this.pdfUrl);
 
     this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
       this.loading = false;

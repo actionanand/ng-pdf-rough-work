@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   backend: {
-    remotePDF: 'https://www.africau.edu/images/default/sample.pdf',
-    localPdf: 'https://www.africau.edu/images/default/sample.pdf'
-  }
+    remotePDF: 'https://cdn.filestackcontent.com/wcrjf9qPTCKXV3hMXDwK',
+    localPdf: 'https://cdn.filestackcontent.com/wcrjf9qPTCKXV3hMXDwK',
+  },
 };
