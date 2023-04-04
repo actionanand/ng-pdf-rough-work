@@ -1,6 +1,8 @@
 {
   "name": "ng-pdf-rough-work",
-  "version": "0.0.0",
+  "version": "0.0.1",
+  "license": "MIT",
+  "author": "Anand Raja",
   "scripts": {
     "ng": "ng",
     "serve": "ng serve --proxy-config proxy-dev.conf.json --port 1069",
