@@ -15,7 +15,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    
   ],
   imports: [
     BrowserModule,
@@ -28,9 +28,10 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     HomeComponent,
     InbuiltPdfBlobComponent,
     InbuiltPdfViewerComponent,
-    NpmPdfViewerComponent
+    NpmPdfViewerComponent,
+    AppComponent
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: []
 })
 export class AppModule { }
