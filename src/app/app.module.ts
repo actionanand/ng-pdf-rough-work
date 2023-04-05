@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
-import { PdfJsViewerModule } from 'ng2-pdfjs-viewer';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { InbuiltPdfViewerComponent } from './pages/inbuilt-pdf-viewer/inbuilt-pdf-viewer.component';
@@ -18,20 +16,19 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 @NgModule({
   declarations: [
     AppComponent,
-    InbuiltPdfViewerComponent,
-    NpmPdfViewerComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PdfJsViewerModule,
     PdfBlobPipe,
     SafePipe,
     SpinnerComponent,
     NavBarComponent,
     HomeComponent,
-    InbuiltPdfBlobComponent
+    InbuiltPdfBlobComponent,
+    InbuiltPdfViewerComponent,
+    NpmPdfViewerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
