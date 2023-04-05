@@ -25,13 +25,13 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     InbuiltPdfBlobComponent,
     SafePipe,
     PdfBlobPipe,
-    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PdfJsViewerModule
+    PdfJsViewerModule,
+    SpinnerComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

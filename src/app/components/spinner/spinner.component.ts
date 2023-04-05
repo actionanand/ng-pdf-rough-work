@@ -2,9 +2,13 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-spinner',
-  templateUrl: './spinner.component.html',
-  styleUrls: ['./spinner.component.scss']
+  standalone: true,
+  styleUrls: ['./spinner.component.scss'],
+  template: ` <div class="lds-ellipsis">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>`,
 })
-export class SpinnerComponent {
-
-}
+export class SpinnerComponent {}
