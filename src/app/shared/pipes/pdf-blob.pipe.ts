@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
 @Pipe({
+  standalone: true,
   name: 'pdfBlob',
 })
 export class PdfBlobPipe implements PipeTransform {

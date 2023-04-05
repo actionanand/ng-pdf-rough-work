@@ -20,18 +20,18 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AppComponent,
     InbuiltPdfViewerComponent,
     NpmPdfViewerComponent,
-    HomeComponent,
-    NavBarComponent,
     InbuiltPdfBlobComponent,
-    SafePipe,
-    PdfBlobPipe,
-    SpinnerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    PdfJsViewerModule
+    PdfJsViewerModule,
+    PdfBlobPipe,
+    SafePipe,
+    SpinnerComponent,
+    NavBarComponent,
+    HomeComponent,
   ],
   providers: [],
   bootstrap: [AppComponent]
