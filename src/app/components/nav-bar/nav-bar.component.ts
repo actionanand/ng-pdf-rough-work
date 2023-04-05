@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
-  selector: 'app-nav-bar',
   standalone: true,
+  selector: 'app-nav-bar',
   imports: [RouterLink, RouterLinkActive],
   template: ` <nav>
     <h2 routerLink="/" class="link-hover">PDF Playground</h2>
