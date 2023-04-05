@@ -16,7 +16,6 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Troubleshooting
 >If PDF not displayed at local, please run the below line
-
 ```bash
 npm run copy-pdf-assets
 ```
