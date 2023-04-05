@@ -34,6 +34,7 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - [All You Need to Know About Angular Proxy Configuration](https://javascript.plainenglish.io/all-you-need-to-know-about-angular-proxy-configuration-a1aeb2d8c86)
 - [Angular PDFJS viewer with Mozilla's ViewerJS.](https://github.com/intbot/ng2-pdfjs-viewer)
 - [getting cors error trying to use pdf url links - CORS opened pdf link](https://github.com/FranckFreiburger/vue-pdf/issues/273#issuecomment-838953439)
+- [HTTP in a standalone Angular application with provideHttpClient](https://blog.ninja-squad.com/2022/11/09/angular-http-in-standalone-applications/)
 
 ## Further help
 

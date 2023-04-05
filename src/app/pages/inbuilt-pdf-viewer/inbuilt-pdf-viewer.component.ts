@@ -1,14 +1,19 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { NgIf } from '@angular/common';
 
 import { Subscription } from 'rxjs';
 
 import { PdfService } from '../../services/pdf.service';
 import { environment } from '../../../environments/environment';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
+  standalone: true,
   selector: 'app-inbuilt-pdf-viewer',
   templateUrl: './inbuilt-pdf-viewer.component.html',
   styleUrls: ['./inbuilt-pdf-viewer.component.scss'],
+  imports: [NgIf, SafePipe, SpinnerComponent],
 })
 export class InbuiltPdfViewerComponent implements OnInit, OnDestroy {
   pdfUrl!: string;
