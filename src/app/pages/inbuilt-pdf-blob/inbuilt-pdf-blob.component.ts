@@ -1,14 +1,20 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AsyncPipe, NgIf } from '@angular/common';
 
 import { Subscription } from 'rxjs';
 
 import { PdfService } from '../../services/pdf.service';
 import { environment } from '../../../environments/environment';
+import { SafePipe } from '../../shared/pipes/safe.pipe';
+import { PdfBlobPipe } from '../../shared/pipes/pdf-blob.pipe';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
+  standalone: true,
   selector: 'app-inbuilt-pdf-blob',
   templateUrl: './inbuilt-pdf-blob.component.html',
   styleUrls: ['./inbuilt-pdf-blob.component.scss'],
+  imports: [NgIf, AsyncPipe, SafePipe, PdfBlobPipe, SpinnerComponent],
 })
 export class InbuiltPdfBlobComponent implements OnInit, OnDestroy {
   pdfUrl!: string;

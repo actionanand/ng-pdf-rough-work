@@ -20,7 +20,6 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     AppComponent,
     InbuiltPdfViewerComponent,
     NpmPdfViewerComponent,
-    InbuiltPdfBlobComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,6 +31,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
     SpinnerComponent,
     NavBarComponent,
     HomeComponent,
+    InbuiltPdfBlobComponent
   ],
   providers: [],
   bootstrap: [AppComponent]
