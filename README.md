@@ -35,6 +35,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - [Angular PDFJS viewer with Mozilla's ViewerJS.](https://github.com/intbot/ng2-pdfjs-viewer)
 - [getting cors error trying to use pdf url links - CORS opened pdf link](https://github.com/FranckFreiburger/vue-pdf/issues/273#issuecomment-838953439)
 - [HTTP in a standalone Angular application with provideHttpClient](https://blog.ninja-squad.com/2022/11/09/angular-http-in-standalone-applications/)
+- [Angular Inject Function: A New Way To Work With DI](https://www.henriquecustodia.dev/posts/angular-inject-function:-a-new-way-to-work-with-di/)
+- [Using the Inject Function in Angular 15](https://www.danywalls.com/using-the-inject-function-in-angular-15)
+- [Why Angular 14’s new inject() function is so amazing?](https://codereacter.medium.com/why-angular-14s-new-inject-function-is-so-amazing-ac281e7148d1)
 
 ## Further help
 
