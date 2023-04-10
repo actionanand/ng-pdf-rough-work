@@ -22,7 +22,7 @@ import { LOGGER_TOKEN } from '../../shared/constants/inject-constants';
         const http = inject(HttpClient);
         return {
           log: (value: string) => {
-            http.post('www.anandraja.com', { value }).pipe(first()).subscribe();
+            http.post('https://www.anandraja.com', { value }).pipe(first()).subscribe();
             console.log('Post request is sent: ', JSON.stringify(value));
           },
         };
