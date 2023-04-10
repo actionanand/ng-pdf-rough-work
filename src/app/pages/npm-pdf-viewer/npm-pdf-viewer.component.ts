@@ -39,7 +39,7 @@ export class NpmPdfViewerComponent implements OnInit, OnDestroy, AfterViewInit {
   private pdfDownload(external = false) {
     this.pdfUrl = environment.backend.localPdf;
 
-    this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
+    this.pdfSub = this.pdfServ.downloadPdf$(this.pdfUrl).subscribe((resp: BlobPart) => {
       setTimeout(() => (this.loading = false), 2000);
 
       if (external) {

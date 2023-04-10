@@ -27,7 +27,7 @@ export class InbuiltPdfBlobComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.pdfUrl = environment.backend.remotePDF;
 
-    this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
+    this.pdfSub = this.pdfServ.downloadPdf$(this.pdfUrl).subscribe((resp: BlobPart) => {
       this.loading = false;
       const pdfBlob = new Blob([resp], { type: 'application/pdf' });
       this.pdfBlobUrl = window.URL.createObjectURL(pdfBlob);

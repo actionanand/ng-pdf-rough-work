@@ -15,7 +15,9 @@ Run `ng generate component component-name` to generate a new component. You can 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Troubleshooting
->If PDF not displayed at local, please run the below line
+
+> If PDF not displayed at local, please run the below line
+
 ```bash
 npm run copy-pdf-assets
 ```
@@ -35,6 +37,41 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - [Angular PDFJS viewer with Mozilla's ViewerJS.](https://github.com/intbot/ng2-pdfjs-viewer)
 - [getting cors error trying to use pdf url links - CORS opened pdf link](https://github.com/FranckFreiburger/vue-pdf/issues/273#issuecomment-838953439)
 - [HTTP in a standalone Angular application with provideHttpClient](https://blog.ninja-squad.com/2022/11/09/angular-http-in-standalone-applications/)
+- [Angular Inject Function: A New Way To Work With DI](https://www.henriquecustodia.dev/posts/angular-inject-function:-a-new-way-to-work-with-di/)
+- [Using the Inject Function in Angular 15](https://www.danywalls.com/using-the-inject-function-in-angular-15)
+- [Why Angular 14’s new inject() function is so amazing?](https://codereacter.medium.com/why-angular-14s-new-inject-function-is-so-amazing-ac281e7148d1)
+
+## What is the `inject()` function
+
+> The `inject()` function takes an InjectionToken as a parameter and returns the value for that InjectionToken from the currently active injector. Basically, it’s another way to get a hold of a dependency other than using constructor injection.
+
+> In practice the `inject()` calls are allowed in a constructor, a constructor parameter and a field initializer.
+
+```typescript
+export class AppComponent implements OnInit {
+  changeDetectorRef = inject(ChangeDetectorRef); // it works
+
+  constructor() {
+    const changeDetectorRef = inject(ChangeDetectorRef); // it works
+  }
+
+  ngOnInit() {
+    const changeDetectorRef = inject(ChangeDetectorRef); // it throws an error
+  }
+}
+```
+
+```typescript
+providers: [
+  {
+    provide: GREETINGS,
+    useFactory: () => {
+      const userInfo = inject(UserInfo); // works
+      return `Hello, ${userInfo.name}!`;
+    },
+  },
+];
+```
 
 ## Further help
 
