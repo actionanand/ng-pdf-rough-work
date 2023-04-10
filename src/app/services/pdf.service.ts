@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class PdfService {
   constructor(private http: HttpClient) {}
 
-  downloadPdf(url: string): Observable<Blob> {
+  downloadPdf$(url: string): Observable<Blob> {
     return this.http.get(url, { responseType: 'blob' }).pipe(
       map((result: Blob) => {
         return result;
@@ -18,7 +18,7 @@ export class PdfService {
     );
   }
 
-  downloadPdfBlobUrl(url: string): Observable<string> {
+  downloadPdfBlobUrl$(url: string): Observable<string> {
     const obs = this.http.get(url, { responseType: 'blob' }).pipe(
       map((val: Blob) => {
         return URL.createObjectURL(new Blob([val], { type: 'application/pdf' }));

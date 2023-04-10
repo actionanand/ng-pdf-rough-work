@@ -25,7 +25,7 @@ export class InbuiltPdfViewerComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.pdfUrl = environment.backend.localPdf;
 
-    this.pdfSub = this.pdfServ.downloadPdf(this.pdfUrl).subscribe((resp: BlobPart) => {
+    this.pdfSub = this.pdfServ.downloadPdf$(this.pdfUrl).subscribe((resp: BlobPart) => {
       this.loading = false;
       const pdfBlob = new Blob([resp], { type: 'application/pdf' });
       this.pdfUrl = window.URL.createObjectURL(pdfBlob);
