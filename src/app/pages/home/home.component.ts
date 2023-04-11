@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { pug } from '../../../assets/img/pug';
+import { pug } from '../../../assets/img-file/pug';
 import { InjectWorksComponent } from '../../components/inject-works/inject-works.component';
 
 @Component({
@@ -29,7 +29,7 @@ import { InjectWorksComponent } from '../../components/inject-works/inject-works
           position: relative;
           margin: auto;
           border: 24px solid;
-          border-image: url('../../../assets/img/ar-heart.svg');
+          border-image: url('../../../assets/img/ar-color-changing-heart.svg');
           border-image-slice: 32;
           border-image-repeat: round;
         }
