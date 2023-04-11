@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, Renderer2, RendererStyleFlags2, inject } from '@angular/core';
 
-import { pug } from '../../../assets/img/pug';
+import { pug } from '../../../assets/img-file/pug';
+import { arHeart } from '../../../assets/img-file/ar-heart';
 import { InjectWorksComponent } from '../../components/inject-works/inject-works.component';
+import { getHost } from '../../shared/functions/get-host';
 
 @Component({
   standalone: true,
@@ -29,7 +31,7 @@ import { InjectWorksComponent } from '../../components/inject-works/inject-works
           position: relative;
           margin: auto;
           border: 24px solid;
-          border-image: url('../../../assets/img/ar-heart.svg');
+          border-image: url('../../../assets/img/ar-heart-red-animation.svg');
           border-image-slice: 32;
           border-image-repeat: round;
         }
@@ -56,6 +58,29 @@ import { InjectWorksComponent } from '../../components/inject-works/inject-works
     `,
   ],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   imgData = pug;
+  arHeartSvgData = arHeart;
+
+  host = getHost<HTMLElement>();
+  renderer = inject(Renderer2);
+
+  ngOnInit(): void {
+    const flags = RendererStyleFlags2.DashCase | RendererStyleFlags2.Important;
+
+    // A dirty trick to load the SVG into the document
+    const blob = new Blob([this.arHeartSvgData], { type: 'image/svg+xml' });
+    const svgUrl = URL.createObjectURL(blob);
+    const borderImgUrl = `url(${svgUrl})`;
+
+    this.renderer.setStyle(this.host.querySelector('.repeating-linear'), 'border-image-source', borderImgUrl, flags);
+
+    /*
+    Through normal DI - setting style using `elementRef`
+    (this.elRef.nativeElement.querySelector('.repeating-linear') as HTMLElement).style.borderImageSource = borderImgUrl;
+
+    Through `inject` function DI - setting style using `elementRef` (function outsourced)
+    (this.host.querySelector('.repeating-linear') as HTMLElement).style.borderImageSource = borderImgUrl;
+    */
+  }
 }
