@@ -1,8 +1,9 @@
-import { Component, ElementRef, OnInit, Renderer2, RendererStyleFlags2 } from '@angular/core';
+import { Component, OnInit, Renderer2, RendererStyleFlags2, inject } from '@angular/core';
 
 import { pug } from '../../../assets/img-file/pug';
 import { arHeart } from '../../../assets/img-file/ar-heart';
 import { InjectWorksComponent } from '../../components/inject-works/inject-works.component';
+import { getHost } from '../../shared/functions/get-host';
 
 @Component({
   standalone: true,
@@ -61,7 +62,8 @@ export class HomeComponent implements OnInit {
   imgData = pug;
   arHeartSvgData = arHeart;
 
-  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
+  host = getHost<HTMLElement>();
+  renderer = inject(Renderer2);
 
   ngOnInit(): void {
     const flags = RendererStyleFlags2.DashCase | RendererStyleFlags2.Important;
@@ -71,13 +73,14 @@ export class HomeComponent implements OnInit {
     const svgUrl = URL.createObjectURL(blob);
     const borderImgUrl = `url(${svgUrl})`;
 
-    // (this.elRef.nativeElement.querySelector('.repeating-linear') as HTMLElement).style.borderImageSource = borderImgUrl;
+    this.renderer.setStyle(this.host.querySelector('.repeating-linear'), 'border-image-source', borderImgUrl, flags);
 
-    this.renderer.setStyle(
-      this.elRef.nativeElement.querySelector('.repeating-linear'),
-      'border-image-source',
-      borderImgUrl,
-      flags,
-    );
+    /*
+    Through normal DI - setting style using `elementRef`
+    (this.elRef.nativeElement.querySelector('.repeating-linear') as HTMLElement).style.borderImageSource = borderImgUrl;
+
+    Through `inject` function DI - setting style using `elementRef` (function outsourced)
+    (this.host.querySelector('.repeating-linear') as HTMLElement).style.borderImageSource = borderImgUrl;
+    */
   }
 }
