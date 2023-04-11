@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2, RendererStyleFlags2 } from '@angular/core';
 
 import { pug } from '../../../assets/img-file/pug';
+import { arHeart } from '../../../assets/img-file/ar-heart';
 import { InjectWorksComponent } from '../../components/inject-works/inject-works.component';
 
 @Component({
@@ -29,7 +30,7 @@ import { InjectWorksComponent } from '../../components/inject-works/inject-works
           position: relative;
           margin: auto;
           border: 24px solid;
-          border-image: url('../../../assets/img/ar-color-changing-heart.svg');
+          border-image: url('../../../assets/img/ar-heart-red-animation.svg');
           border-image-slice: 32;
           border-image-repeat: round;
         }
@@ -56,6 +57,27 @@ import { InjectWorksComponent } from '../../components/inject-works/inject-works
     `,
   ],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
   imgData = pug;
+  arHeartSvgData = arHeart;
+
+  constructor(private renderer: Renderer2, private elRef: ElementRef) {}
+
+  ngOnInit(): void {
+    const flags = RendererStyleFlags2.DashCase | RendererStyleFlags2.Important;
+
+    // A dirty trick to load the SVG into the document
+    const blob = new Blob([this.arHeartSvgData], { type: 'image/svg+xml' });
+    const svgUrl = URL.createObjectURL(blob);
+    const borderImgUrl = `url(${svgUrl})`;
+
+    // (this.elRef.nativeElement.querySelector('.repeating-linear') as HTMLElement).style.borderImageSource = borderImgUrl;
+
+    this.renderer.setStyle(
+      this.elRef.nativeElement.querySelector('.repeating-linear'),
+      'border-image-source',
+      borderImgUrl,
+      flags,
+    );
+  }
 }
