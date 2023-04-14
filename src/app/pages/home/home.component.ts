@@ -1,4 +1,5 @@
-import { Component, OnInit, Renderer2, RendererStyleFlags2, inject } from '@angular/core';
+import { Component, OnInit, Renderer2, inject } from '@angular/core';
+// import { RendererStyleFlags2 } from '@angular/core';
 
 import { pug } from '../../../assets/img-file/pug';
 import { arHeart } from '../../../assets/img-file/ar-heart';
@@ -34,6 +35,13 @@ import { getHost } from '../../shared/functions/get-host';
           border-image: url('../../../assets/img/ar-heart-red-animation.svg');
           border-image-slice: 32;
           border-image-repeat: round;
+
+          &:hover {
+            cursor: pointer;
+            border-image: url('../../../assets/img/ar-heart-red-animation.svg') !important;
+            border-image-slice: 32 !important;
+            border-image-repeat: round !important;
+          }
         }
       }
     `,
@@ -66,21 +74,25 @@ export class HomeComponent implements OnInit {
   renderer = inject(Renderer2);
 
   ngOnInit(): void {
-    const flags = RendererStyleFlags2.DashCase | RendererStyleFlags2.Important;
+    // const flags = RendererStyleFlags2.DashCase | RendererStyleFlags2.Important;
 
     // A dirty trick to load the SVG into the document
     const blob = new Blob([this.arHeartSvgData], { type: 'image/svg+xml' });
     const svgUrl = URL.createObjectURL(blob);
     const borderImgUrl = `url(${svgUrl})`;
 
-    this.renderer.setStyle(this.host.querySelector('.repeating-linear'), 'border-image-source', borderImgUrl, flags);
+    this.renderer.setStyle(this.host.querySelector('.repeating-linear'), 'border-image-source', borderImgUrl);
 
+    
     /*
     Through normal DI - setting style using `elementRef`
     (this.elRef.nativeElement.querySelector('.repeating-linear') as HTMLElement).style.borderImageSource = borderImgUrl;
-
+    
     Through `inject` function DI - setting style using `elementRef` (function outsourced)
     (this.host.querySelector('.repeating-linear') as HTMLElement).style.borderImageSource = borderImgUrl;
+
+    How to add `important` flag through TS
+    this.renderer.setStyle(this.host.querySelector('.repeating-linear'), 'border-image-source', borderImgUrl, flags);
     */
   }
 }
