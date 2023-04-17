@@ -12,6 +12,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
       <li><a routerLink="/inbuilt-pdf" routerLinkActive="link-active" class="link-hover"> Browser PDF </a></li>
       <li><a routerLink="/inbuilt-blob" routerLinkActive="link-active" class="link-hover"> Browser PDF Blob </a></li>
       <li><a routerLink="/custom-pdf" routerLinkActive="link-active" class="link-hover"> NPM PDF </a></li>
+      <li><a routerLink="/pdfjs" routerLinkActive="link-active" class="link-hover"> Mozilla Pdf </a></li>
     </ul>
   </nav>`,
 })
