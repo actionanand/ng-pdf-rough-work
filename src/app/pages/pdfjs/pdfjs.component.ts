@@ -1,4 +1,4 @@
-import { Component, ElementRef, inject, OnInit, VERSION, ViewChild } from '@angular/core';
+import { Component, OnInit, VERSION } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
@@ -8,7 +8,7 @@ import { pdfBase64 } from '../../../assets/asset-file/sample-pdf-base64';
 import { environment } from 'src/environments/environment';
 
 /*
-  import { Inject } from '@angular/core';
+  import { Inject, ElementRef, ViewChild, inject } from '@angular/core';
   import { DOCUMENT } from '@angular/common';
   import * as PDFJS from 'pdfjs-dist';
 */
