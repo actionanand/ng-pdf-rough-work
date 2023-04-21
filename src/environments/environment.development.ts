@@ -4,5 +4,6 @@ export const environment = {
     remotePDF: 'api/v1/static/pdf/remote',
     localPdf: 'api/v1/static/pdf/local',
     players: 'https://www.balldontlie.io/api/v1/players',
+    gitHubPdf: 'https://cdn.filestackcontent.com/wcrjf9qPTCKXV3hMXDwK',
   },
 };

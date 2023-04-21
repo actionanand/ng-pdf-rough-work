@@ -1,18 +1,26 @@
+import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+
+import { NavBarLinks } from '../../shared/constants/nav-bar-links';
+import { NavBarLinks as NavModel } from '../../models/general.model';
 
 @Component({
   standalone: true,
   selector: 'app-nav-bar',
-  imports: [RouterLink, RouterLinkActive],
+  imports: [RouterLink, RouterLinkActive, NgFor],
   styleUrls: ['./nav-bar.component.scss'],
-  template: ` <nav>
-    <h2 routerLink="/" class="link-hover">PDF Playground</h2>
-    <ul>
-      <li><a routerLink="/inbuilt-pdf" routerLinkActive="link-active" class="link-hover"> Browser PDF </a></li>
-      <li><a routerLink="/inbuilt-blob" routerLinkActive="link-active" class="link-hover"> Browser PDF Blob </a></li>
-      <li><a routerLink="/custom-pdf" routerLinkActive="link-active" class="link-hover"> NPM PDF </a></li>
-    </ul>
+  template: `<nav>
+    <ng-container *ngFor="let nav of NavBarLinks[0].navbar">
+      <h2 routerLink="/" class="link-hover">{{ nav.label }}</h2>
+      <ul>
+        <li *ngFor="let link of nav.values">
+          <a [routerLink]="link.value" routerLinkActive="link-active" class="link-hover"> {{ link.label }} </a>
+        </li>
+      </ul>
+    </ng-container>
   </nav>`,
 })
-export class NavBarComponent {}
+export class NavBarComponent {
+  readonly NavBarLinks: NavModel[] = NavBarLinks;
+}
