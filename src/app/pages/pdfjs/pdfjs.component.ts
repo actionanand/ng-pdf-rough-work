@@ -94,7 +94,7 @@ export class PdfjsComponent implements OnInit {
     const pdfData = atob(pdfBase64);
     // const loadingTask = getDocument({ data: pdfData});
     // const loadingTask = getDocument(this.pdfurl);
-    const loadingTask = getDocument('https://raw.githubusercontent.com/actionanand/ng-pdf-rough-work/2-pdf-js-design/src/assets/file/hi-anand.pdf');
+    const loadingTask = getDocument('https://raw.githubusercontent.com/actionanand/ng-pdf-rough-work/2-pdf-js-design/src/assets/file/lorem_ipsum.pdf');
     const pdf = await loadingTask.promise;
     console.log('pdf loaded: ', pdf);
     const pageNumber = 1;
