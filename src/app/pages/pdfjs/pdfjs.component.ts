@@ -17,11 +17,8 @@ import { environment } from 'src/environments/environment';
   selector: 'app-pdfjs',
   standalone: true,
   imports: [CommonModule],
-  template: `
-    <p>{{ title }}</p>
-    <button (click)="onSwitchPDF()">{{ pdfSwitched ? 'Load From Server' : 'Load From Data File' }}</button>
-    <canvas id="pdf-canvas"></canvas>
-  `,
+  styleUrls: ['./pdfjs.component.scss'],
+  templateUrl: './pdfjs.component.html',
 })
 export class PdfjsComponent implements OnInit {
   host = getHost<HTMLElement>();
