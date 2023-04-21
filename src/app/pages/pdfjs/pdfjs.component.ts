@@ -4,7 +4,8 @@ import { CommonModule } from '@angular/common';
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
 
 import { getHost } from '../../shared/functions/get-host';
-import { pdfBase64 } from '../../../assets/asset-file/sample-pdf-base64'
+import { pdfBase64 } from '../../../assets/asset-file/sample-pdf-base64';
+import { environment } from 'src/environments/environment';
 
 /*
   import { Inject } from '@angular/core';
@@ -18,6 +19,7 @@ import { pdfBase64 } from '../../../assets/asset-file/sample-pdf-base64'
   imports: [CommonModule],
   template: `
     <p>{{ title }}</p>
+    <button (click)="onSwitchPDF()">{{ pdfSwitched ? 'Load From Server' : 'Load From Data File' }}</button>
     <canvas id="pdf-canvas"></canvas>
   `,
 })
@@ -26,6 +28,7 @@ export class PdfjsComponent implements OnInit {
 
   title = "This App's Angular version: " + VERSION.full + " and pdf.js's version: " + version;
   pdfurl!: string;
+  pdfSwitched = false;
 
   /*
   document = inject(DOCUMENT);
@@ -50,10 +53,9 @@ export class PdfjsComponent implements OnInit {
     const pdfWorkerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.js`;
     GlobalWorkerOptions.workerSrc = pdfWorkerSrc;
 
-    this.pdfurl = encodeURI('https://cdn.filestackcontent.com/wcrjf9qPTCKXV3hMXDwK');
+    this.pdfurl = encodeURI(environment.backend.gitHubPdf);
 
-    // this.loadPDF(); // it also does the same work as `loadPDFAsAsync`
-    this.loadPDFAsAsync()
+    this.loadPDFAsAsync();
   }
 
   loadPDF() {
@@ -84,6 +86,7 @@ export class PdfjsComponent implements OnInit {
         const renderTask = page.render(renderContext);
 
         renderTask.promise.then(() => {
+          if (pdf != null) pdf.destroy();
           console.log('Page rendered in the canvas as image');
         });
       });
@@ -92,9 +95,7 @@ export class PdfjsComponent implements OnInit {
 
   async loadPDFAsAsync() {
     const pdfData = atob(pdfBase64);
-    // const loadingTask = getDocument({ data: pdfData});
-    // const loadingTask = getDocument(this.pdfurl);
-    const loadingTask = getDocument('https://raw.githubusercontent.com/actionanand/ng-pdf-rough-work/2-pdf-js-design/src/assets/file/lorem_ipsum.pdf');
+    const loadingTask = getDocument({ data: pdfData });
     const pdf = await loadingTask.promise;
     console.log('pdf loaded: ', pdf);
     const pageNumber = 1;
@@ -106,7 +107,7 @@ export class PdfjsComponent implements OnInit {
     const context: CanvasRenderingContext2D = canvas.getContext('2d')!;
     canvas.height = viewport.height;
     canvas.width = viewport.width;
-   
+
     const renderContext = {
       canvasContext: context,
       viewport,
@@ -114,6 +115,16 @@ export class PdfjsComponent implements OnInit {
 
     const renderTask = page.render(renderContext);
     await renderTask.promise;
+    if (pdf != null) pdf.destroy();
     console.log('Page rendered in the canvas as image');
+  }
+
+  onSwitchPDF() {
+    this.pdfSwitched = !this.pdfSwitched;
+    if (this.pdfSwitched) {
+      this.loadPDF();
+      return;
+    }
+    this.loadPDFAsAsync();
   }
 }
