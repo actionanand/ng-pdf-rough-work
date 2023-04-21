@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
 
 import { getHost } from '../../shared/functions/get-host';
+import { pdfBase64 } from '../../../assets/asset-file/sample-pdf-base64'
 
 /*
   import { Inject } from '@angular/core';
@@ -51,12 +52,13 @@ export class PdfjsComponent implements OnInit {
 
     this.pdfurl = encodeURI('https://cdn.filestackcontent.com/wcrjf9qPTCKXV3hMXDwK');
 
-    this.loadPDF();
+    // this.loadPDF(); // it also does the same work as `loadPDFAsAsync`
+    this.loadPDFAsAsync()
   }
 
   loadPDF() {
     const loadingTask = getDocument(this.pdfurl);
-    
+
     loadingTask.promise.then((pdf) => {
       console.log('pdf loaded: ', pdf);
 
@@ -65,7 +67,7 @@ export class PdfjsComponent implements OnInit {
       pdf.getPage(pageNumber).then((page) => {
         console.log('first page is loaded');
         const scale = 1.5;
-        const viewport = page.getViewport({ scale: scale });
+        const viewport = page.getViewport({ scale });
 
         // Prepare canvas using PDF page dimensions
         const canvas: HTMLCanvasElement = this.host.querySelector('#pdf-canvas') as HTMLCanvasElement;
@@ -76,15 +78,41 @@ export class PdfjsComponent implements OnInit {
         // Render PDF page into canvas context
         const renderContext = {
           canvasContext: context,
-          viewport: viewport,
+          viewport,
         };
 
         const renderTask = page.render(renderContext);
 
-        renderTask.promise.then(function () {
+        renderTask.promise.then(() => {
           console.log('Page rendered in the canvas as image');
         });
       });
     });
+  }
+
+  async loadPDFAsAsync() {
+    const pdfData = atob(pdfBase64);
+    const loadingTask = getDocument({ data: pdfData});
+    // const loadingTask = getDocument(this.pdfurl);
+    const pdf = await loadingTask.promise;
+    console.log('pdf loaded: ', pdf);
+    const pageNumber = 1;
+    const page = await pdf.getPage(pageNumber);
+    const scale = 1.5;
+    const viewport = page.getViewport({ scale });
+
+    const canvas: HTMLCanvasElement = this.host.querySelector('#pdf-canvas') as HTMLCanvasElement;
+    const context: CanvasRenderingContext2D = canvas.getContext('2d')!;
+    canvas.height = viewport.height;
+    canvas.width = viewport.width;
+   
+    const renderContext = {
+      canvasContext: context,
+      viewport,
+    };
+
+    const renderTask = page.render(renderContext);
+    await renderTask.promise;
+    console.log('Page rendered in the canvas as image');
   }
 }

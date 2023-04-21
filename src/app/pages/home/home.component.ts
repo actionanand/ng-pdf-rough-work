@@ -1,8 +1,8 @@
 import { Component, OnInit, Renderer2, inject } from '@angular/core';
 // import { RendererStyleFlags2 } from '@angular/core';
 
-import { pug } from '../../../assets/img-file/pug';
-import { arHeart } from '../../../assets/img-file/ar-heart';
+import { pug } from '../../../assets/asset-file/pug';
+import { arHeart } from '../../../assets/asset-file/ar-heart';
 import { InjectWorksComponent } from '../../components/inject-works/inject-works.component';
 import { getHost } from '../../shared/functions/get-host';
 
