@@ -26,9 +26,14 @@ const routes: Routes = [
       import('./pages/npm-pdf-viewer/npm-pdf-viewer.component').then((mod) => mod.NpmPdfViewerComponent),
     title: 'Custom PDF Work with NPM',
   },
+  // {
+  //   path: 'pdfjs',
+  //   loadComponent: () => import('./pages/pdfjs/pdfjs.component').then(mod => mod.PdfjsComponent),
+  //   title: 'Mozilla \'s Pdf.js'
+  // },
   {
     path: 'pdfjs',
-    loadComponent: () => import('./pages/pdfjs/pdfjs.component').then(mod => mod.PdfjsComponent),
+    loadComponent: () => import('./pages/pdf-test/pdf-test.component').then(mod => mod.PdfTestComponent),
     title: 'Mozilla \'s Pdf.js'
   },
   { path: '**', redirectTo: '' },

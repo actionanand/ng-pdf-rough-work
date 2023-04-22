@@ -5,7 +5,7 @@ import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
 
 import { getHost } from '../../shared/functions/get-host';
 import { pdfBase64 } from '../../../assets/asset-file/sample-pdf-base64';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 /*
   import { Inject, ElementRef, ViewChild, inject } from '@angular/core';
