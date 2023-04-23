@@ -1,3 +1,20 @@
 <p>{{ title }}</p>
-<button (click)="onSwitchPDF()">{{ pdfSwitched ? 'Load From Server' : 'Load From Data File' }}</button>
-<canvas id="pdf-canvas"></canvas>
+
+<div>
+  <ng-container *ngFor="let pdf of pdfPages">
+    <input type="radio" [id]="pdf" [attr.name]="pdf" [(ngModel)]="myPdf" [value]="pdf" />
+    <label [for]="pdf">{{ pdf }}</label>
+  </ng-container>
+</div>
+
+<ng-template [ngIf]="myPdf === 'imgPdfFull'">
+  <app-pdf-full></app-pdf-full>
+</ng-template>
+
+<ng-template [ngIf]="myPdf === 'image'">
+  <app-pdf-img [pdfType]="'image'"></app-pdf-img>
+</ng-template>
+
+<ng-template [ngIf]="myPdf === 'svg'">
+  <app-pdf-img></app-pdf-img>
+</ng-template>

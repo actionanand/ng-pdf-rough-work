@@ -3,17 +3,17 @@ import { CommonModule, DOCUMENT } from '@angular/common';
 
 import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
 
-import { getHost } from '../../shared/functions/get-host';
-import { environment } from '../../../environments/environment';
+import { getHost } from '../../../shared/functions/get-host';
+import { environment } from '../../../../environments/environment';
 
 @Component({
-  selector: 'app-pdf-test',
+  selector: 'app-pdf-full',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './pdf-test.component.html',
-  styleUrls: ['./pdf-test.component.scss'],
+  templateUrl: './pdf-full.component.html',
+  styleUrls: ['./pdf-full.component.scss'],
 })
-export class PdfTestComponent implements OnInit {
+export class PdfFullComponent implements OnInit {
   pdfurl!: string;
   host = getHost<HTMLElement>();
 
