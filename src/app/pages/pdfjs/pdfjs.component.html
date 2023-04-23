@@ -9,6 +9,10 @@
   </ng-container>
 </div>
 
+<div *ngIf="loading" class="spinner-wrap">
+  <app-spinner></app-spinner>
+</div>
+
 <ng-template [ngIf]="myPdf === 'imgPdfFull'">
   <app-pdf-full></app-pdf-full>
 </ng-template>

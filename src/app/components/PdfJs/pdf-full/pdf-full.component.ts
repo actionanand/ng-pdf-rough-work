@@ -5,6 +5,7 @@ import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
 
 import { getHost } from '../../../shared/functions/get-host';
 import { environment } from '../../../../environments/environment';
+import { LoadingService } from '../../../services/loading.service';
 
 @Component({
   selector: 'app-pdf-full',
@@ -28,6 +29,7 @@ export class PdfFullComponent implements OnInit {
   host = getHost<HTMLElement>();
 
   document = inject(DOCUMENT);
+  loadingServ = inject(LoadingService);
 
   constructor() {
     const pdfWorkerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.js`;
@@ -41,6 +43,7 @@ export class PdfFullComponent implements OnInit {
   }
 
   async loadPDF() {
+    this.loadingServ.onChangeLoading(true);
     const loadingTask = getDocument(this.pdfurl);
 
     const pdf = await loadingTask.promise;
@@ -78,6 +81,7 @@ export class PdfFullComponent implements OnInit {
       };
 
       // Render PDF page
+      this.loadingServ.onChangeLoading();
       page.render(renderContext);
     }
   }

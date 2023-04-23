@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { getDocument, GlobalWorkerOptions, SVGGraphics, version } from 'pdfjs-dist';
@@ -6,9 +6,10 @@ import { getDocument, GlobalWorkerOptions, SVGGraphics, version } from 'pdfjs-di
 import { getHost } from '../../../shared/functions/get-host';
 import { pdfBase64 } from '../../../../assets/asset-file/sample-pdf-base64';
 import { environment } from '../../../../environments/environment';
+import { LoadingService } from '../../../services/loading.service';
 
 /*
-  import { Inject, inject, ElementRef, ViewChild } from '@angular/core';
+  import { Inject, ElementRef, ViewChild } from '@angular/core';
   import { DOCUMENT } from '@angular/common';
   import * as PDFJS from 'pdfjs-dist';
 */
@@ -30,6 +31,9 @@ import { environment } from '../../../../environments/environment';
 })
 export class PdfImgComponent implements OnInit {
   @Input('pdfType') pdfImgSelection: string = 'svg';
+
+  loadingServ = inject(LoadingService);
+
   host = getHost<HTMLElement>();
   pdfurl!: string;
 
@@ -66,6 +70,7 @@ export class PdfImgComponent implements OnInit {
   }
 
   loadPDFAsImg() {
+    this.loadingServ.onChangeLoading(true);
     const pdfData = atob(pdfBase64);
     const loadingTask = getDocument({ data: pdfData });
 
@@ -91,6 +96,7 @@ export class PdfImgComponent implements OnInit {
           viewport,
         };
 
+        this.loadingServ.onChangeLoading();
         const renderTask = page.render(renderContext);
 
         renderTask.promise.then(() => {
@@ -102,6 +108,7 @@ export class PdfImgComponent implements OnInit {
   }
 
   async loadPDFAsSVG() {
+    this.loadingServ.onChangeLoading(true);
     const loadingTask = getDocument(this.pdfurl);
 
     const pdf = await loadingTask.promise;
@@ -134,7 +141,10 @@ export class PdfImgComponent implements OnInit {
     const opList = await page.getOperatorList();
     const svgGfx = new SVGGraphics(page.commonObjs, page.objs);
     const svg = await svgGfx.getSVG(opList, viewport);
+
+    this.loadingServ.onChangeLoading();
     container.appendChild(svg);
+    
     if (pdf != null) pdf.destroy();
     console.log('PDF rendered as svg');
   }
