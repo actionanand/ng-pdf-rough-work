@@ -42,6 +42,9 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 - [Why Angular 14’s new inject() function is so amazing?](https://codereacter.medium.com/why-angular-14s-new-inject-function-is-so-amazing-ac281e7148d1)
 - [Angular Providers: UseClass, UseValue, UseFactory & UseExisting](https://www.tektutorialshub.com/angular/angular-providers/)
 - [How to use PDF.js in Angular 2/4/5? - stackoverflow](https://stackoverflow.com/questions/49548288/how-to-use-pdf-js-in-angular-2-4-5)
+- [Custom PDF Rendering in JavaScript with Mozilla’s PDF.Js](https://www.sitepoint.com/custom-pdf-rendering/)
+- [pdf.js with text selection - stackoverflow](https://stackoverflow.com/questions/33063213/pdf-js-with-text-selection)
+- [How to Create a JavaScript PDF Viewer](https://code.tutsplus.com/tutorials/how-to-create-a-pdf-viewer-in-javascript--cms-32505)
 
 ## What is the `inject()` function
 

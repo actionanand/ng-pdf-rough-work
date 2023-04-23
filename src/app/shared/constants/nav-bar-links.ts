@@ -6,18 +6,18 @@ export const NavBarLinks = [
         values: [
           {
             label: 'Browser PDF',
-            value: 'inbuilt-pdf',
+            value: '/inbuilt-pdf',
           },
           {
-            label: 'PDF Blob',
+            label: 'Blob-Fed PDF',
             value: '/inbuilt-blob',
           },
           {
-            label: 'NPM PDF',
+            label: 'Mozilla PDF',
             value: '/custom-pdf',
           },
           {
-            label: 'Mozilla PDF',
+            label: 'Own PDF',
             value: '/pdfjs',
           },
         ],

@@ -1,127 +1,41 @@
-import { Component, OnInit, VERSION } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, OnDestroy, OnInit, VERSION, inject } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
-import { getDocument, GlobalWorkerOptions, version } from 'pdfjs-dist';
+import { Subscription } from 'rxjs';
+import { version } from 'pdfjs-dist';
 
-import { getHost } from '../../shared/functions/get-host';
-import { pdfBase64 } from '../../../assets/asset-file/sample-pdf-base64';
-import { environment } from 'src/environments/environment';
-
-/*
-  import { Inject, ElementRef, ViewChild, inject } from '@angular/core';
-  import { DOCUMENT } from '@angular/common';
-  import * as PDFJS from 'pdfjs-dist';
-*/
+import { PdfImgComponent } from '../../components/PdfJs/pdf-img/pdf-img.component';
+import { PdfFullComponent } from '../../components/PdfJs/pdf-full/pdf-full.component';
+import { LoadingService } from '../../services/loading.service';
+import { SpinnerComponent } from '../../components/spinner/spinner.component';
 
 @Component({
   selector: 'app-pdfjs',
   standalone: true,
-  imports: [CommonModule],
+  imports: [NgFor, NgIf, FormsModule, PdfImgComponent, PdfFullComponent, SpinnerComponent],
   styleUrls: ['./pdfjs.component.scss'],
   templateUrl: './pdfjs.component.html',
 })
-export class PdfjsComponent implements OnInit {
-  host = getHost<HTMLElement>();
-
+export class PdfjsComponent implements OnInit, OnDestroy {
   title = "This App's Angular version: " + VERSION.full + " and pdf.js's version: " + version;
-  pdfurl!: string;
-  pdfSwitched = false;
+  myPdf: string = 'svg';
+  loading = true;
+  sub!: Subscription;
 
-  /*
-  document = inject(DOCUMENT);
-  @ViewChild('pdf-canvas', { static: false}) canvas!: ElementRef;
+  pdfPages = [
+    { code: 'imgPdfFull', name: 'Full PDF' },
+    { code: 'svg', name: 'SVG' },
+    { code: 'image', name: 'PNG Image' },
+  ];
 
-    constructor(@Inject(DOCUMENT) private document: Document) {
-      // ... other logics
-      const context: any = this.canvas.nativeElement.getContext('2d');
-      this.canvas.nativeElement.height = viewport.height;
-      this.canvas.nativeElement.width = viewport.width;
-
-      // or
-
-      const canvas: any = this.document.getElementById('pdf-canvas');
-      const context = canvas.getContext('2d');
-      canvas.height = viewport.height;
-      canvas.width = viewport.width;
-    }
-  */
+  loadingServ = inject(LoadingService);
 
   ngOnInit(): void {
-    const pdfWorkerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${version}/pdf.worker.min.js`;
-    GlobalWorkerOptions.workerSrc = pdfWorkerSrc;
-
-    this.pdfurl = encodeURI(environment.backend.gitHubPdf);
-
-    this.loadPDFAsAsync();
+    this.sub = this.loadingServ.loading$.subscribe((spinner) => (this.loading = spinner));
   }
 
-  loadPDF() {
-    const loadingTask = getDocument(this.pdfurl);
-
-    loadingTask.promise.then((pdf) => {
-      console.log('pdf loaded: ', pdf);
-
-      // Fetch the first page
-      const pageNumber = 1;
-      pdf.getPage(pageNumber).then((page) => {
-        console.log('first page is loaded');
-        const scale = 1.5;
-        const viewport = page.getViewport({ scale });
-
-        // Prepare canvas using PDF page dimensions
-        const canvas: HTMLCanvasElement = this.host.querySelector('#pdf-canvas') as HTMLCanvasElement;
-        const context: CanvasRenderingContext2D = canvas.getContext('2d')!;
-        canvas.height = viewport.height;
-        canvas.width = viewport.width;
-
-        // Render PDF page into canvas context
-        const renderContext = {
-          canvasContext: context,
-          viewport,
-        };
-
-        const renderTask = page.render(renderContext);
-
-        renderTask.promise.then(() => {
-          if (pdf != null) pdf.destroy();
-          console.log('Page rendered in the canvas as image');
-        });
-      });
-    });
-  }
-
-  async loadPDFAsAsync() {
-    const pdfData = atob(pdfBase64);
-    const loadingTask = getDocument({ data: pdfData });
-    const pdf = await loadingTask.promise;
-    console.log('pdf loaded: ', pdf);
-    const pageNumber = 1;
-    const page = await pdf.getPage(pageNumber);
-    const scale = 1.5;
-    const viewport = page.getViewport({ scale });
-
-    const canvas: HTMLCanvasElement = this.host.querySelector('#pdf-canvas') as HTMLCanvasElement;
-    const context: CanvasRenderingContext2D = canvas.getContext('2d')!;
-    canvas.height = viewport.height;
-    canvas.width = viewport.width;
-
-    const renderContext = {
-      canvasContext: context,
-      viewport,
-    };
-
-    const renderTask = page.render(renderContext);
-    await renderTask.promise;
-    if (pdf != null) pdf.destroy();
-    console.log('Page rendered in the canvas as image');
-  }
-
-  onSwitchPDF() {
-    this.pdfSwitched = !this.pdfSwitched;
-    if (this.pdfSwitched) {
-      this.loadPDF();
-      return;
-    }
-    this.loadPDFAsAsync();
+  ngOnDestroy(): void {
+    this.sub.unsubscribe();
   }
 }
