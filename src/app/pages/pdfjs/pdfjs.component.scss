@@ -1,0 +1,15 @@
+.pdf-radio-wrap {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  margin: 0.8rem 0.4rem;
+}
+
+.pdf-title {
+  margin: 0.8rem 0.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

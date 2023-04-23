@@ -10,8 +10,18 @@ import { environment } from '../../../../environments/environment';
   selector: 'app-pdf-full',
   standalone: true,
   imports: [CommonModule],
-  templateUrl: './pdf-full.component.html',
-  styleUrls: ['./pdf-full.component.scss'],
+  template: `<div id="container"></div>`,
+  styles: [
+    `
+      #container {
+        height: 85vh;
+        overflow: auto;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+      }
+    `,
+  ],
 })
 export class PdfFullComponent implements OnInit {
   pdfurl!: string;

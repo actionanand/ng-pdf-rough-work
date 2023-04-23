@@ -18,5 +18,9 @@ export class PdfjsComponent {
   title = "This App's Angular version: " + VERSION.full + " and pdf.js's version: " + version;
 
   myPdf: string = 'svg';
-  pdfPages = ['imgPdfFull', 'svg', 'image'];
+  pdfPages = [
+    { code: 'imgPdfFull', name: 'Full PDF' },
+    { code: 'svg', name: 'SVG' },
+    { code: 'image', name: 'PNG Image' },
+  ];
 }

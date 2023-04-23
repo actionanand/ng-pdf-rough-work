@@ -1,9 +1,11 @@
-<p>{{ title }}</p>
+<h2 class="pdf-title">{{ title }}</h2>
 
-<div>
+<div class="pdf-radio-wrap">
   <ng-container *ngFor="let pdf of pdfPages">
-    <input type="radio" [id]="pdf" [attr.name]="pdf" [(ngModel)]="myPdf" [value]="pdf" />
-    <label [for]="pdf">{{ pdf }}</label>
+    <div>
+      <input type="radio" [id]="pdf.code" [attr.name]="pdf.code" [(ngModel)]="myPdf" [value]="pdf.code" />
+      <label [for]="pdf.code">{{ pdf.name }}</label>
+    </div>
   </ng-container>
 </div>
 

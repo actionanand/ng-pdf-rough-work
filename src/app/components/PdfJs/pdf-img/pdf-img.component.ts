@@ -18,7 +18,15 @@ import { environment } from '../../../../environments/environment';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './pdf-img.component.html',
-  styleUrls: ['./pdf-img.component.scss'],
+  styles: [
+    `
+      .pdf-img-wrap {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+    `,
+  ],
 })
 export class PdfImgComponent implements OnInit {
   @Input('pdfType') pdfImgSelection: string = 'svg';
