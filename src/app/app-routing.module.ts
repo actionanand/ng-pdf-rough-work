@@ -6,25 +6,30 @@ const routes: Routes = [
     path: '',
     pathMatch: 'full',
     loadComponent: () => import('./pages/home/home.component').then((mod) => mod.HomeComponent),
-    title: 'PDF Rough Work - Home',
+    title: 'Various PDF Works - Homepage',
   },
   {
     path: 'inbuilt-pdf',
     loadComponent: () =>
       import('./pages/inbuilt-pdf-viewer/inbuilt-pdf-viewer.component').then((mod) => mod.InbuiltPdfViewerComponent),
-    title: 'Inbuilt PDF Work',
+    title: 'Browser PDF viewer',
   },
   {
     path: 'inbuilt-blob',
     loadComponent: () =>
       import('./pages/inbuilt-pdf-blob/inbuilt-pdf-blob.component').then((mod) => mod.InbuiltPdfBlobComponent),
-    title: 'Inbuilt Blob PDF Work',
+    title: 'Blob fed Browser PDF viewer',
   },
   {
     path: 'custom-pdf',
     loadComponent: () =>
       import('./pages/npm-pdf-viewer/npm-pdf-viewer.component').then((mod) => mod.NpmPdfViewerComponent),
-    title: 'Custom PDF Work with NPM',
+    title: 'NPM PDF viewer using Mozilla\'s Pdf.js',
+  },
+  {
+    path: 'pdfjs',
+    loadComponent: () => import('./pages/pdfjs/pdfjs.component').then((mod) => mod.PdfjsComponent),
+    title: 'Own PDF viewer using Mozilla\'s Pdf.js',
   },
   { path: '**', redirectTo: '' },
 ];

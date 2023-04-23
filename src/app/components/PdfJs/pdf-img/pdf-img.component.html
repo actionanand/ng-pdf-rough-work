@@ -1,0 +1,11 @@
+<ng-template [ngIf]="pdfImgSelection === 'image'">
+  <div class="pdf-img-wrap">
+    <canvas id="pdf-canvas"></canvas>
+  </div>
+</ng-template>
+
+<ng-template [ngIf]="pdfImgSelection === 'svg'">
+  <div class="pdf-img-wrap">
+    <div id="pdf-svg"></div>
+  </div>
+</ng-template>

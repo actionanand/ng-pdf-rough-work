@@ -1,0 +1,26 @@
+<h2 class="pdf-title">{{ title }}</h2>
+
+<div class="pdf-radio-wrap">
+  <ng-container *ngFor="let pdf of pdfPages">
+    <div>
+      <input type="radio" [id]="pdf.code" [attr.name]="pdf.code" [(ngModel)]="myPdf" [value]="pdf.code" />
+      <label [for]="pdf.code">{{ pdf.name }}</label>
+    </div>
+  </ng-container>
+</div>
+
+<div *ngIf="loading" class="spinner-wrap">
+  <app-spinner></app-spinner>
+</div>
+
+<ng-template [ngIf]="myPdf === 'imgPdfFull'">
+  <app-pdf-full></app-pdf-full>
+</ng-template>
+
+<ng-template [ngIf]="myPdf === 'image'">
+  <app-pdf-img [pdfType]="'image'"></app-pdf-img>
+</ng-template>
+
+<ng-template [ngIf]="myPdf === 'svg'">
+  <app-pdf-img></app-pdf-img>
+</ng-template>
