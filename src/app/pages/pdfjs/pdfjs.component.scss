@@ -18,5 +18,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  // position: absolute;
+  position: absolute;
+  left: 0; 
+  right: 0; 
+  top: 13%;
+  // height: 70vh;
+}
+
+.pdf-content-wrap {
+  position: relative;
 }
