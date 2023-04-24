@@ -9,18 +9,20 @@
   </ng-container>
 </div>
 
-<div *ngIf="loading" class="spinner-wrap">
-  <app-spinner></app-spinner>
+<div class="pdf-content-wrap">
+  <div *ngIf="loading" class="spinner-wrap">
+    <app-spinner></app-spinner>
+  </div>
+
+  <ng-template [ngIf]="myPdf === 'imgPdfFull'">
+    <app-pdf-full></app-pdf-full>
+  </ng-template>
+
+  <ng-template [ngIf]="myPdf === 'image'">
+    <app-pdf-img [pdfType]="'image'"></app-pdf-img>
+  </ng-template>
+
+  <ng-template [ngIf]="myPdf === 'svg'">
+    <app-pdf-img></app-pdf-img>
+  </ng-template>
 </div>
-
-<ng-template [ngIf]="myPdf === 'imgPdfFull'">
-  <app-pdf-full></app-pdf-full>
-</ng-template>
-
-<ng-template [ngIf]="myPdf === 'image'">
-  <app-pdf-img [pdfType]="'image'"></app-pdf-img>
-</ng-template>
-
-<ng-template [ngIf]="myPdf === 'svg'">
-  <app-pdf-img></app-pdf-img>
-</ng-template>
