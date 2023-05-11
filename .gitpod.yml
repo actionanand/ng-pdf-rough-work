@@ -5,7 +5,7 @@
 # Learn more from ready-to-use templates: https://www.gitpod.io/docs/introduction/getting-started/quickstart
 
 tasks:
-  - init: npm install && npm run build
+  - name: Setup Angular v15 env with npm
+    before: nvm install v18.15.0
+    init: npm install && npm run build
     command: npm run start
-
-
