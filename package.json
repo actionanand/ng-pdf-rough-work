@@ -6,7 +6,7 @@
   "homepage": "http://actionanand.github.io/ng-pdf-rough-work",
   "scripts": {
     "ng": "ng",
-    "serve": "ng serve --proxy-config proxy-dev.conf.json --port 1069",
+    "serve": "ng serve --proxy-config proxy-dev.conf.json --port 1069  --host 0.0.0.0 --disable-host-check",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
